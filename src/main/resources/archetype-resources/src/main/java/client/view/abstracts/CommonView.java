@@ -1,5 +1,3 @@
-package archetype
-
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
@@ -56,14 +54,14 @@ public abstract class CommonView extends Composite {
     /**
      * The <code>CustomerProxy</code> customerProxy.
      */
-    protected archetype.CustomerProxy customerProxy;
+    protected CustomerProxy customerProxy;
 
     /**
      * Instantiates a new <code>CommonView</code>.
      *
      * @param customerProxy the <code>customerProxy</code> customer proxy
      */
-    public CommonView(archetype.CustomerProxy customerProxy) {
+    public CommonView(CustomerProxy customerProxy) {
         this.customerProxy = customerProxy;
         initWidget(ourUiBinder.createAndBindUi(this));
         firstName.setText(customerProxy.getFirstName());

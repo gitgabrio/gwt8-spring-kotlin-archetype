@@ -1,5 +1,3 @@
-package archetype
-
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
@@ -35,14 +33,14 @@ public class CustomerLoginEvent extends Event<CustomerLoginEvent.CustomerLoginHa
     /**
      * The <code>CustomerProxy</code> customer.
      */
-    private archetype.CustomerProxy customer;
+    private CustomerProxy customer;
 
     /**
      * Instantiates a new <code>CustomerLoginEvent</code>.
      *
      * @param customer the <code>customer</code> customer
      */
-    public CustomerLoginEvent(archetype.CustomerProxy customer) {
+    public CustomerLoginEvent(CustomerProxy customer) {
         this.customer = customer;
     }
 
@@ -51,7 +49,7 @@ public class CustomerLoginEvent extends Event<CustomerLoginEvent.CustomerLoginHa
      *
      * @return the customer
      */
-    public archetype.CustomerProxy getCustomer() {
+    public CustomerProxy getCustomer() {
         return customer;
     }
 

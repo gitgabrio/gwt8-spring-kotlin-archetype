@@ -1,5 +1,3 @@
-package archetype
-
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
@@ -40,7 +38,7 @@ public class ReceiverSuppliers {
                 }
 
                 private void fireLogout() {
-                    simpleEventBusSupplier().get().fireEvent(new archetype.CustomerLogoutEvent());
+                    simpleEventBusSupplier().get().fireEvent(new CustomerLogoutEvent());
                 }
             };
             return toReturn;
@@ -52,16 +50,16 @@ public class ReceiverSuppliers {
      *
      * @return the supplier
      */
-    public static Supplier<Receiver<archetype.CustomerProxy>> receiverSupplier() {
+    public static Supplier<Receiver<CustomerProxy>> receiverSupplier() {
         return () -> {
-            Receiver<archetype.CustomerProxy> toReturn = new Receiver<archetype.CustomerProxy>() {
+            Receiver<CustomerProxy> toReturn = new Receiver<CustomerProxy>() {
                 @Override
-                public void onSuccess(archetype.CustomerProxy response) {
+                public void onSuccess(CustomerProxy response) {
                     if (response == null) {
                         onFailure(new ServerFailure("Failed to login customer"));
                     } else {
                         loginPopupPanelSupplier(response.getConnectionId()).get().center();
-                        archetype.CustomerLoginEvent loginEvent = new archetype.CustomerLoginEvent(response);
+                        CustomerLoginEvent loginEvent = new CustomerLoginEvent(response);
                         simpleEventBusSupplier().get().fireEvent(loginEvent);
                     }
                 }

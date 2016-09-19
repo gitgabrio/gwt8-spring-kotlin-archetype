@@ -1,5 +1,3 @@
-package archetype
-
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
@@ -25,7 +23,7 @@ public class RequestSuppliers {
      * @param password the password
      * @return the supplier
      */
-    public static Supplier<Request<archetype.CustomerProxy>> customerRequestSupplier(String userName, String password) {
+    public static Supplier<Request<CustomerProxy>> customerRequestSupplier(String userName, String password) {
         return () -> authenticationFactorySupplier().get().createAuthenticationRequestCtx().getCustomer(userName, password);
     }
 
@@ -35,7 +33,7 @@ public class RequestSuppliers {
      * @param customerProxy the customer proxy
      * @return the supplier
      */
-    public static Supplier<Request<Void>> logoutRequestSupplier(archetype.CustomerProxy customerProxy) {
+    public static Supplier<Request<Void>> logoutRequestSupplier(CustomerProxy customerProxy) {
         return () -> authenticationFactorySupplier().get().createAuthenticationRequestCtx().logoutCustomer(customerProxy);
     }
 

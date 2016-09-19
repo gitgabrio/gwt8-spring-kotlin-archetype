@@ -1,5 +1,3 @@
-package archetype
-
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
@@ -19,17 +17,17 @@ public class FactoryFactory {
     /**
      * The constant <code>AuthenticationFactory</code> authenticationFactory.
      */
-    private static archetype.AuthenticationFactory authenticationFactory;
+    private static AuthenticationFactory authenticationFactory;
 
     /**
      * Authentication factory supplier supplier.
      *
      * @return the supplier
      */
-    public static Supplier<archetype.AuthenticationFactory> authenticationFactorySupplier() {
+    public static Supplier<AuthenticationFactory> authenticationFactorySupplier() {
         return () -> {
             if (authenticationFactory == null) {
-                authenticationFactory = GWT.create(archetype.AuthenticationFactory.class);
+                authenticationFactory = GWT.create(AuthenticationFactory.class);
                 authenticationFactory.initialize(new SimpleEventBus());
             }
             return authenticationFactory;

@@ -1,5 +1,3 @@
-package archetype
-
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
@@ -22,18 +20,18 @@ import ${package}.client.view.login.LoginScreen;
 /**
  * The type <code>Main</code>.
  */
-public class Main implements EntryPoint, archetype.CustomerLoginEvent.CustomerLoginHandler, archetype.CustomerLogoutEvent.CustomerLogoutHandler {
+public class Main implements EntryPoint, CustomerLoginEvent.CustomerLoginHandler, CustomerLogoutEvent.CustomerLogoutHandler {
 
 
     /**
      * The <code>RootPanelPopulator</code> rootPanelPopulator.
      */
-    private archetype.RootPanelPopulator rootPanelPopulator =  new archetype.RootPanelPopulator();
+    private RootPanelPopulator rootPanelPopulator =  new RootPanelPopulator();
 
     /**
      * The <code>ThrowableConsumer</code> throwableConsumer.
      */
-    private archetype.ThrowableConsumer throwableConsumer = new archetype.ThrowableConsumer();
+    private ThrowableConsumer throwableConsumer = new ThrowableConsumer();
 
 
     /**
@@ -42,10 +40,10 @@ public class Main implements EntryPoint, archetype.CustomerLoginEvent.CustomerLo
     @Override
     public void onModuleLoad() {
         GWT.setUncaughtExceptionHandler(e -> throwableConsumer.accept(e));
-        archetype.HandlerConsumer handlerConsumer = new archetype.HandlerConsumer();
-        SimpleEventBus simpleEventBus = archetype.EventBusFactory.simpleEventBusSupplier().get();
-        handlerConsumer.accept(simpleEventBus, archetype.CustomerLoginEvent.TYPE, this);
-        handlerConsumer.accept(simpleEventBus, archetype.CustomerLogoutEvent.TYPE, this);
+        HandlerConsumer handlerConsumer = new HandlerConsumer();
+        SimpleEventBus simpleEventBus = EventBusFactory.simpleEventBusSupplier().get();
+        handlerConsumer.accept(simpleEventBus, CustomerLoginEvent.TYPE, this);
+        handlerConsumer.accept(simpleEventBus, CustomerLogoutEvent.TYPE, this);
         showLoginScreen();
     }
 
@@ -55,7 +53,7 @@ public class Main implements EntryPoint, archetype.CustomerLoginEvent.CustomerLo
      * @param event the event
      */
     @Override
-    public void manageEvent(archetype.CustomerLoginEvent event) {
+    public void manageEvent(CustomerLoginEvent event) {
         showCustomerView(event.getCustomer());
     }
 
@@ -65,7 +63,7 @@ public class Main implements EntryPoint, archetype.CustomerLoginEvent.CustomerLo
      * @param event the event
      */
     @Override
-    public void manageEvent(archetype.CustomerLogoutEvent event) {
+    public void manageEvent(CustomerLogoutEvent event) {
         logout();
     }
 
@@ -73,14 +71,14 @@ public class Main implements EntryPoint, archetype.CustomerLoginEvent.CustomerLo
      * Logout.
      */
     private void logout() {
-        rootPanelPopulator.accept(new archetype.LoginScreen());
+        rootPanelPopulator.accept(new LoginScreen());
     }
 
     /**
      * Show login screen.
      */
     private void showLoginScreen() {
-        rootPanelPopulator.accept(new archetype.LoginScreen());
+        rootPanelPopulator.accept(new LoginScreen());
     }
 
     /**
@@ -88,8 +86,8 @@ public class Main implements EntryPoint, archetype.CustomerLoginEvent.CustomerLo
      *
      * @param customer the customer
      */
-    private void showCustomerView(archetype.CustomerProxy customer) {
-        rootPanelPopulator.accept(new archetype.CustomerView(customer));
+    private void showCustomerView(CustomerProxy customer) {
+        rootPanelPopulator.accept(new CustomerView(customer));
     }
 
 }

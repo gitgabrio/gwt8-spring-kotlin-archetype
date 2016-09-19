@@ -1,5 +1,3 @@
-package archetype
-
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
@@ -38,7 +36,7 @@ public interface AuthenticationFactory extends RequestFactory {
          * @param customer the customer
          * @return the request
          */
-        public Request<Void> logoutCustomer(archetype.CustomerProxy customer);
+        public Request<Void> logoutCustomer(CustomerProxy customer);
 
 
         /**
@@ -48,6 +46,6 @@ public interface AuthenticationFactory extends RequestFactory {
          * @param password the password
          * @return the customer
          */
-        public Request<archetype.CustomerProxy> getCustomer(String userName, String password);
+        public Request<CustomerProxy> getCustomer(String userName, String password);
     }
 }

@@ -39,10 +39,10 @@
         <gwt.compiler.disableClassMetadata>false</gwt.compiler.disableClassMetadata>
         <gwt.compiler.bindAddress>0.0.0.0</gwt.compiler.bindAddress>
         <gwt.noserver>true</gwt.noserver>       <!-- set true to use remote tomcat instead of internal  Jetty -->
-        <gwt.target>/GWTSpringKtModel/index.html</gwt.target>
+        <gwt.target>/${artifactId}/index.html</gwt.target>
         <maven-compiler.source>1.8</maven-compiler.source>
         <maven-compiler.target>1.8</maven-compiler.target>
-        <tomcat.path>/GWTSpringKtModel</tomcat.path>
+        <tomcat.path>/${artifactId}</tomcat.path>
     </properties>
 
     <dependencyManagement>
@@ -263,7 +263,7 @@
                 <configuration>
                     <runTarget>${gwt.target}</runTarget>
                     <modules>
-                        <module>net.cardosi.gwtspringktmodel.GWTSpringKtModel</module>
+                        <module>${package}.${artifactId}</module>
                     </modules>
                     <debugPort>${gwt.debug.port}</debugPort>
                     <noServer>${gwt.noserver}</noServer>
@@ -300,7 +300,7 @@
                     <path>${tomcat.path}</path>
                     <url>${tomcat.server.url}</url>
                     <update>true</update>
-                    <warFile>${project.build.directory}/GWTSpringKTModel.war</warFile>
+                    <warFile>${project.build.directory}/${artifactId}.war</warFile>
                 </configuration>
                 <executions>
                     <execution>
@@ -326,8 +326,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${maven-war-plugin.version}</version>
                 <configuration>
-                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
-                    <warName>GWTSpringKtModel</warName>
+                    <warName>${artifactId}</warName>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
